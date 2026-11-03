@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="ReactWorld: Structuring Interaction Responses for Embodied Video Generation. Project overview, video comparisons, method and experimental results.">
   <meta name="theme-color" content="#f8fafc">
-  <meta name="reactworld-build" content="2026-11-01-overview-sound-toggle">
+  <meta name="reactworld-build" content="2026-11-03-media-performance-v1">
   <title>ReactWorld — Structuring Interaction Responses for Embodied Video Generation</title>
   <link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%234d7cff%27%2F%3E%3Cstop%20offset%3D%27.45%27%20stop-color%3D%27%238b5cf6%27%2F%3E%3Cstop%20offset%3D%27.7%27%20stop-color%3D%27%23e3489b%27%2F%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%23f6763a%27%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20rx%3D%2715%27%20fill%3D%27%230c1524%27%2F%3E%3Cpath%20d%3D%27M19%2048V16h14c8%200%2012%204%2012%2011s-4%2011-12%2011H19M32%2038l14%2010%27%20fill%3D%27none%27%20stroke%3D%27url%28%23g%29%27%20stroke-width%3D%278.5%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%2F%3E%3C%2Fsvg%3E">
   <style>
@@ -284,6 +284,11 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
 #overview-mount>.media video{display:block;border-radius:inherit;background:#080b12}
 @media(max-width:600px){#overview.hero-media{border-radius:12px}}
 </style>
+<style id="reactworld-media-performance">
+/* Posters render before video metadata; section observers defer the video bytes. */
+.media.has-poster:not(.ready) video{opacity:1;pointer-events:auto}
+.media.has-poster:not(.ready) .placeholder{display:none}
+</style>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -301,12 +306,12 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
     <section class="hero" id="top" aria-labelledby="project-title">
       <div class="hero-ambience" id="hero-ambience" aria-hidden="true">
         <div class="hero-scene hero-scene-left">
-          <img src="assets/images/web077_future.png" alt="" decoding="async">
-          <video muted loop playsinline preload="none" tabindex="-1" disablepictureinpicture data-background-src="assets/videos/web077_rgb.mp4"></video>
+          <img src="assets/images/web_web077_future.webp" alt="" decoding="async">
+          <video muted loop playsinline preload="none" tabindex="-1" disablepictureinpicture data-background-src="assets/videos/ambience_web077.mp4"></video>
         </div>
         <div class="hero-scene hero-scene-right">
-          <img src="assets/images/rovid080_future.png" alt="" decoding="async">
-          <video muted loop playsinline preload="none" tabindex="-1" disablepictureinpicture data-background-src="assets/videos/rovid080_rgb.mp4"></video>
+          <img src="assets/images/web_rovid080_future.webp" alt="" decoding="async">
+          <video muted loop playsinline preload="none" tabindex="-1" disablepictureinpicture data-background-src="assets/videos/ambience_rovid080.mp4"></video>
         </div>
       </div>
       <button class="hero-motion-toggle" id="hero-motion-toggle" type="button" aria-pressed="false" hidden>Ⅱ Pause background</button>
@@ -464,7 +469,7 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
   "affiliations": "Huawei Technologies Co., Ltd.; Tongji University; Zhejiang University",
   "venue": "",
   "paper": "assets/paper/reactworld.pdf",
-  "overviewAudio": "assets/audio/overview_bgm_omnixref_v4.m4a",
+  "overviewAudio": "",
   "code": "",
   "data": "",
   "citation": "",
@@ -565,69 +570,91 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
       "key": "overview",
       "kind": "video",
       "title": "Project overview / 总览视频",
-      "path": "assets/videos/overview.mp4"
+      "path": "assets/videos/overview_web.mp4",
+      "poster": "assets/images/preview_overview.webp",
+      "alternatePaths": [
+        "assets/videos/overview.mp4"
+      ]
     },
     {
       "key": "showcase_fold",
       "kind": "video",
       "title": "Fold the shorts / Generated video",
-      "path": "assets/videos/fold_gt.mp4"
+      "path": "assets/videos/fold_gt.mp4",
+      "poster": "assets/images/preview_fold_gt.webp"
     },
     {
       "key": "fig2",
       "kind": "image",
       "title": "Fig.2 / ReactWorld pipeline — response prediction and sequential feedback",
-      "path": "assets/images/fig2.png"
+      "path": "assets/images/web_fig2.webp",
+      "fullPath": "assets/images/fig2.png",
+      "width": 2560,
+      "height": 945
     },
     {
       "key": "fig3",
       "kind": "image",
       "title": "Fig.3 / Response fields and attention — final A",
-      "path": "assets/images/fig3.png"
+      "path": "assets/images/web_fig3.webp",
+      "fullPath": "assets/images/fig3.png",
+      "width": 2560,
+      "height": 1038
     },
     {
       "key": "compare_jam_input",
       "kind": "image",
       "title": "Squeeze the jam / First frame from ReactWorld",
-      "path": "assets/images/jam_input.png",
-      "firstFrameFrom": "compare_jam_ours"
+      "path": "assets/images/preview_compare_jam_input.webp",
+      "firstFrameFrom": "compare_jam_ours",
+      "width": 832,
+      "height": 480,
+      "precomputedFirstFrame": true
     },
     {
       "key": "compare_jam_wan",
       "kind": "video",
       "title": "Squeeze the jam / Wan2.2-A14B",
-      "path": "assets/videos/jam_wan.mp4"
+      "path": "assets/videos/jam_wan.mp4",
+      "poster": "assets/images/preview_jam_wan.webp"
     },
     {
       "key": "compare_jam_cosmos",
       "kind": "video",
       "title": "Squeeze the jam / Cosmos3-Nano",
-      "path": "assets/videos/jam_cosmos.mp4"
+      "path": "assets/videos/jam_cosmos.mp4",
+      "poster": "assets/images/preview_jam_cosmos.webp"
     },
     {
       "key": "compare_jam_abot",
       "kind": "video",
       "title": "Squeeze the jam / ABot-PhysWorld",
-      "path": "assets/videos/jam_abot.mp4"
+      "path": "assets/videos/jam_abot.mp4",
+      "poster": "assets/images/preview_jam_abot.webp"
     },
     {
       "key": "compare_jam_physisforcing",
       "kind": "video",
       "title": "Squeeze the jam / PhysisForcing",
-      "path": "assets/videos/jam_physisforcing.mp4"
+      "path": "assets/videos/jam_physisforcing.mp4",
+      "poster": "assets/images/preview_jam_physisforcing.webp"
     },
     {
       "key": "compare_jam_ours",
       "kind": "video",
       "title": "Squeeze the jam / ReactWorld",
-      "path": "assets/videos/jam_ours.mp4"
+      "path": "assets/videos/jam_ours.mp4",
+      "poster": "assets/images/preview_jam_ours.webp"
     },
     {
       "key": "compare_visual_reasoning_0001_input",
       "kind": "image",
       "title": "Pick up the blue book / First frame from ReactWorld",
-      "path": "",
-      "firstFrameFrom": "compare_visual_reasoning_0001_ours"
+      "path": "assets/images/preview_compare_visual_reasoning_0001_input.webp",
+      "firstFrameFrom": "compare_visual_reasoning_0001_ours",
+      "width": 832,
+      "height": 480,
+      "precomputedFirstFrame": true
     },
     {
       "key": "compare_visual_reasoning_0001_wan",
@@ -639,7 +666,8 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
         "video/visual_reasoning_0001_wan.mp4",
         "videos/visual_reasoning_0001_wan.mp4",
         "visual_reasoning_0001_wan.mp4"
-      ]
+      ],
+      "poster": "assets/images/preview_visual_reasoning_0001_wan.webp"
     },
     {
       "key": "compare_visual_reasoning_0001_cosmos",
@@ -651,7 +679,8 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
         "video/visual_reasoning_0001_cosmos.mp4",
         "videos/visual_reasoning_0001_cosmos.mp4",
         "visual_reasoning_0001_cosmos.mp4"
-      ]
+      ],
+      "poster": "assets/images/preview_visual_reasoning_0001_cosmos.webp"
     },
     {
       "key": "compare_visual_reasoning_0001_abot",
@@ -663,7 +692,8 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
         "video/visual_reasoning_0001_abot.mp4",
         "videos/visual_reasoning_0001_abot.mp4",
         "visual_reasoning_0001_abot.mp4"
-      ]
+      ],
+      "poster": "assets/images/preview_visual_reasoning_0001_abot.webp"
     },
     {
       "key": "compare_visual_reasoning_0001_physisforcing",
@@ -675,7 +705,8 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
         "video/visual_reasoning_0001_physisforcing.mp4",
         "videos/visual_reasoning_0001_physisforcing.mp4",
         "visual_reasoning_0001_physisforcing.mp4"
-      ]
+      ],
+      "poster": "assets/images/preview_visual_reasoning_0001_physisforcing.webp"
     },
     {
       "key": "compare_visual_reasoning_0001_ours",
@@ -687,573 +718,673 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
         "video/visual_reasoning_0001_ours.mp4",
         "videos/visual_reasoning_0001_ours.mp4",
         "visual_reasoning_0001_ours.mp4"
-      ]
+      ],
+      "poster": "assets/images/preview_visual_reasoning_0001_ours.webp"
     },
     {
       "key": "compare_apples_input",
       "kind": "image",
       "title": "Pack the bag / First frame from ReactWorld",
-      "path": "assets/images/apples_input.png",
-      "firstFrameFrom": "compare_apples_ours"
+      "path": "assets/images/preview_compare_apples_input.webp",
+      "firstFrameFrom": "compare_apples_ours",
+      "width": 832,
+      "height": 480,
+      "precomputedFirstFrame": true
     },
     {
       "key": "compare_apples_wan",
       "kind": "video",
       "title": "Pack the bag / Wan2.2-A14B",
-      "path": "assets/videos/apples_wan.mp4"
+      "path": "assets/videos/apples_wan.mp4",
+      "poster": "assets/images/preview_apples_wan.webp"
     },
     {
       "key": "compare_apples_cosmos",
       "kind": "video",
       "title": "Pack the bag / Cosmos3-Nano",
-      "path": "assets/videos/apples_cosmos.mp4"
+      "path": "assets/videos/apples_cosmos.mp4",
+      "poster": "assets/images/preview_apples_cosmos.webp"
     },
     {
       "key": "compare_apples_abot",
       "kind": "video",
       "title": "Pack the bag / ABot-PhysWorld",
-      "path": "assets/videos/apples_abot.mp4"
+      "path": "assets/videos/apples_abot.mp4",
+      "poster": "assets/images/preview_apples_abot.webp"
     },
     {
       "key": "compare_apples_physisforcing",
       "kind": "video",
       "title": "Pack the bag / PhysisForcing",
-      "path": "assets/videos/apples_physisforcing.mp4"
+      "path": "assets/videos/apples_physisforcing.mp4",
+      "poster": "assets/images/preview_apples_physisforcing.webp"
     },
     {
       "key": "compare_apples_ours",
       "kind": "video",
       "title": "Pack the bag / ReactWorld",
-      "path": "assets/videos/apples_ours.mp4"
+      "path": "assets/videos/apples_ours.mp4",
+      "poster": "assets/images/preview_apples_ours.webp"
     },
     {
       "key": "compare_cup_input",
       "kind": "image",
       "title": "Place a cup on a plate / First frame from ReactWorld",
-      "path": "assets/images/cup_input.png",
-      "firstFrameFrom": "compare_cup_ours"
+      "path": "assets/images/preview_compare_cup_input.webp",
+      "firstFrameFrom": "compare_cup_ours",
+      "width": 832,
+      "height": 480,
+      "precomputedFirstFrame": true
     },
     {
       "key": "compare_cup_wan",
       "kind": "video",
       "title": "Place a cup on a plate / Wan2.2-A14B",
-      "path": "assets/videos/cup_wan.mp4"
+      "path": "assets/videos/cup_wan.mp4",
+      "poster": "assets/images/preview_cup_wan.webp"
     },
     {
       "key": "compare_cup_cosmos",
       "kind": "video",
       "title": "Place a cup on a plate / Cosmos3-Nano",
-      "path": "assets/videos/cup_cosmos.mp4"
+      "path": "assets/videos/cup_cosmos.mp4",
+      "poster": "assets/images/preview_cup_cosmos.webp"
     },
     {
       "key": "compare_cup_abot",
       "kind": "video",
       "title": "Place a cup on a plate / ABot-PhysWorld",
-      "path": "assets/videos/cup_abot.mp4"
+      "path": "assets/videos/cup_abot.mp4",
+      "poster": "assets/images/preview_cup_abot.webp"
     },
     {
       "key": "compare_cup_physisforcing",
       "kind": "video",
       "title": "Place a cup on a plate / PhysisForcing",
-      "path": "assets/videos/cup_physisforcing.mp4"
+      "path": "assets/videos/cup_physisforcing.mp4",
+      "poster": "assets/images/preview_cup_physisforcing.webp"
     },
     {
       "key": "compare_cup_ours",
       "kind": "video",
       "title": "Place a cup on a plate / ReactWorld",
-      "path": "assets/videos/cup_ours.mp4"
+      "path": "assets/videos/cup_ours.mp4",
+      "poster": "assets/images/preview_cup_ours.webp"
     },
     {
       "key": "compare_stack_input",
       "kind": "image",
       "title": "Stack the cups / First frame from ReactWorld",
-      "path": "assets/images/stack_input.png",
-      "firstFrameFrom": "compare_stack_ours"
+      "path": "assets/images/preview_compare_stack_input.webp",
+      "firstFrameFrom": "compare_stack_ours",
+      "width": 832,
+      "height": 480,
+      "precomputedFirstFrame": true
     },
     {
       "key": "compare_stack_wan",
       "kind": "video",
       "title": "Stack the cups / Wan2.2-A14B",
-      "path": "assets/videos/stack_wan.mp4"
+      "path": "assets/videos/stack_wan.mp4",
+      "poster": "assets/images/preview_stack_wan.webp"
     },
     {
       "key": "compare_stack_cosmos",
       "kind": "video",
       "title": "Stack the cups / Cosmos3-Nano",
-      "path": "assets/videos/stack_cosmos.mp4"
+      "path": "assets/videos/stack_cosmos.mp4",
+      "poster": "assets/images/preview_stack_cosmos.webp"
     },
     {
       "key": "compare_stack_abot",
       "kind": "video",
       "title": "Stack the cups / ABot-PhysWorld",
-      "path": "assets/videos/stack_abot.mp4"
+      "path": "assets/videos/stack_abot.mp4",
+      "poster": "assets/images/preview_stack_abot.webp"
     },
     {
       "key": "compare_stack_physisforcing",
       "kind": "video",
       "title": "Stack the cups / PhysisForcing",
-      "path": "assets/videos/stack_physisforcing.mp4"
+      "path": "assets/videos/stack_physisforcing.mp4",
+      "poster": "assets/images/preview_stack_physisforcing.webp"
     },
     {
       "key": "compare_stack_ours",
       "kind": "video",
       "title": "Stack the cups / ReactWorld",
-      "path": "assets/videos/stack_ours.mp4"
+      "path": "assets/videos/stack_ours.mp4",
+      "poster": "assets/images/preview_stack_ours.webp"
     },
     {
       "key": "intervention_normal",
       "kind": "video",
       "title": "Displacement intervention / Normal feedback",
-      "path": "assets/videos/FIG6_Normal.mp4"
+      "path": "assets/videos/FIG6_Normal.mp4",
+      "poster": "assets/images/preview_FIG6_Normal.webp"
     },
     {
       "key": "intervention_left",
       "kind": "video",
       "title": "Displacement intervention / Leftward offset",
-      "path": "assets/videos/FIG6_Leftward.mp4"
+      "path": "assets/videos/FIG6_Leftward.mp4",
+      "poster": "assets/images/preview_FIG6_Leftward.webp"
     },
     {
       "key": "intervention_right",
       "kind": "video",
       "title": "Displacement intervention / Rightward offset",
-      "path": "assets/videos/FIG6_Rightward.mp4"
+      "path": "assets/videos/FIG6_Rightward.mp4",
+      "poster": "assets/images/preview_FIG6_Rightward.webp"
     },
     {
       "key": "response_web036_rgb",
       "kind": "video",
       "title": "Web036 / ReactWorld generated video",
       "path": "assets/videos/web036_rgb.mp4",
-      "poster": "assets/images/web036_poster.jpg"
+      "poster": "assets/images/preview_web036_rgb.webp"
     },
     {
       "key": "response_web077_rgb",
       "kind": "video",
       "title": "Web077 / ReactWorld generated video",
       "path": "assets/videos/web077_rgb.mp4",
-      "poster": "assets/images/web077_poster.jpg"
+      "poster": "assets/images/preview_web077_rgb.webp"
     },
     {
       "key": "response_rovid001_rgb",
       "kind": "video",
       "title": "RoVid001 / ReactWorld generated video",
       "path": "assets/videos/rovid001_rgb.mp4",
-      "poster": "assets/images/rovid001_poster.jpg"
+      "poster": "assets/images/preview_rovid001_rgb.webp"
     },
     {
       "key": "response_rovid012_rgb",
       "kind": "video",
       "title": "RoVid012 / ReactWorld generated video",
       "path": "assets/videos/rovid012_rgb.mp4",
-      "poster": "assets/images/rovid012_poster.jpg"
+      "poster": "assets/images/preview_rovid012_rgb.webp"
     },
     {
       "key": "response_rovid024_rgb",
       "kind": "video",
       "title": "RoVid024 / ReactWorld generated video",
       "path": "assets/videos/rovid024_rgb.mp4",
-      "poster": "assets/images/rovid024_poster.jpg"
+      "poster": "assets/images/preview_rovid024_rgb.webp"
     },
     {
       "key": "response_rovid080_rgb",
       "kind": "video",
       "title": "RoVid080 / ReactWorld generated video",
       "path": "assets/videos/rovid080_rgb.mp4",
-      "poster": "assets/images/rovid080_poster.jpg"
+      "poster": "assets/images/preview_rovid080_rgb.webp"
     },
     {
       "key": "response_web053_rgb",
       "kind": "video",
       "title": "Web053 / ReactWorld generated video",
       "path": "assets/videos/web053_rgb.mp4",
-      "poster": "assets/images/web053_poster.jpg"
+      "poster": "assets/images/preview_web053_rgb.webp"
     },
     {
       "key": "response_web030_rgb",
       "kind": "video",
       "title": "Web030 / ReactWorld generated video",
       "path": "assets/videos/web030_rgb.mp4",
-      "poster": "assets/images/web030_poster.jpg"
+      "poster": "assets/images/preview_web030_rgb.webp"
     },
     {
       "key": "response_fold_future",
       "kind": "image",
       "title": "Fold the shorts / Future response · static",
-      "path": "assets/images/fold_future.png"
+      "path": "assets/images/web_fold_future.webp",
+      "width": 832,
+      "height": 480
     },
     {
       "key": "response_fold_roles",
       "kind": "video",
       "title": "Fold the shorts / Interaction roles · dynamic",
-      "path": "assets/videos/fold_roles.mp4"
+      "path": "assets/videos/fold_roles.mp4",
+      "poster": "assets/images/preview_fold_roles.webp"
     },
     {
       "key": "response_fold_support",
       "kind": "video",
       "title": "Fold the shorts / Motion support · dynamic",
-      "path": "assets/videos/fold_support.mp4"
+      "path": "assets/videos/fold_support.mp4",
+      "poster": "assets/images/preview_fold_support.webp"
     },
     {
       "key": "response_fold_displacement",
       "kind": "video",
       "title": "Fold the shorts / Displacement · dynamic",
-      "path": "assets/videos/fold_displacement.mp4"
+      "path": "assets/videos/fold_displacement.mp4",
+      "poster": "assets/images/preview_fold_displacement.webp"
     },
     {
       "key": "response_fold_combined",
       "kind": "video",
       "title": "Fold the shorts / Response visualizations · combined R/S/D",
-      "path": "assets/videos/fold_combined.mp4"
+      "path": "assets/videos/fold_combined.mp4",
+      "poster": "assets/images/preview_fold_combined.webp"
     },
     {
       "key": "response_web036_future",
       "kind": "image",
       "title": "Carry an object / Future response · static",
-      "path": "assets/images/web036_future.png"
+      "path": "assets/images/web_web036_future.webp",
+      "width": 832,
+      "height": 384
     },
     {
       "key": "response_web036_roles",
       "kind": "video",
       "title": "Carry an object / Interaction roles · dynamic",
-      "path": "assets/videos/web036_roles.mp4"
+      "path": "assets/videos/web036_roles.mp4",
+      "poster": "assets/images/preview_web036_roles.webp"
     },
     {
       "key": "response_web036_support",
       "kind": "video",
       "title": "Carry an object / Motion support · dynamic",
-      "path": "assets/videos/web036_support.mp4"
+      "path": "assets/videos/web036_support.mp4",
+      "poster": "assets/images/preview_web036_support.webp"
     },
     {
       "key": "response_web036_displacement",
       "kind": "video",
       "title": "Carry an object / Displacement · dynamic",
-      "path": "assets/videos/web036_displacement.mp4"
+      "path": "assets/videos/web036_displacement.mp4",
+      "poster": "assets/images/preview_web036_displacement.webp"
     },
     {
       "key": "response_web036_combined",
       "kind": "video",
       "title": "Carry an object / Predicted responses · combined R/S/D",
-      "path": "assets/videos/web036_combined.mp4"
+      "path": "assets/videos/web036_combined.mp4",
+      "poster": "assets/images/preview_web036_combined.webp"
     },
     {
       "key": "response_web077_future",
       "kind": "image",
       "title": "Transfer a package / Future response · static",
-      "path": "assets/images/web077_future.png"
+      "path": "assets/images/web_web077_future.webp",
+      "width": 832,
+      "height": 480
     },
     {
       "key": "response_web077_roles",
       "kind": "video",
       "title": "Transfer a package / Interaction roles · dynamic",
-      "path": "assets/videos/web077_roles.mp4"
+      "path": "assets/videos/web077_roles.mp4",
+      "poster": "assets/images/preview_web077_roles.webp"
     },
     {
       "key": "response_web077_support",
       "kind": "video",
       "title": "Transfer a package / Motion support · dynamic",
-      "path": "assets/videos/web077_support.mp4"
+      "path": "assets/videos/web077_support.mp4",
+      "poster": "assets/images/preview_web077_support.webp"
     },
     {
       "key": "response_web077_displacement",
       "kind": "video",
       "title": "Transfer a package / Displacement · dynamic",
-      "path": "assets/videos/web077_displacement.mp4"
+      "path": "assets/videos/web077_displacement.mp4",
+      "poster": "assets/images/preview_web077_displacement.webp"
     },
     {
       "key": "response_web077_combined",
       "kind": "video",
       "title": "Transfer a package / Predicted responses · combined R/S/D",
-      "path": "assets/videos/web077_combined.mp4"
+      "path": "assets/videos/web077_combined.mp4",
+      "poster": "assets/images/preview_web077_combined.webp"
     },
     {
       "key": "response_rovid001_future",
       "kind": "image",
       "title": "Fold the shorts / Future response · static",
-      "path": "assets/images/rovid001_future.png"
+      "path": "assets/images/web_rovid001_future.webp",
+      "width": 832,
+      "height": 480
     },
     {
       "key": "response_rovid001_roles",
       "kind": "video",
       "title": "Fold the shorts / Interaction roles · dynamic",
-      "path": "assets/videos/rovid001_roles.mp4"
+      "path": "assets/videos/rovid001_roles.mp4",
+      "poster": "assets/images/preview_rovid001_roles.webp"
     },
     {
       "key": "response_rovid001_support",
       "kind": "video",
       "title": "Fold the shorts / Motion support · dynamic",
-      "path": "assets/videos/rovid001_support.mp4"
+      "path": "assets/videos/rovid001_support.mp4",
+      "poster": "assets/images/preview_rovid001_support.webp"
     },
     {
       "key": "response_rovid001_displacement",
       "kind": "video",
       "title": "Fold the shorts / Displacement · dynamic",
-      "path": "assets/videos/rovid001_displacement.mp4"
+      "path": "assets/videos/rovid001_displacement.mp4",
+      "poster": "assets/images/preview_rovid001_displacement.webp"
     },
     {
       "key": "response_rovid001_combined",
       "kind": "video",
       "title": "Fold the shorts / Predicted responses · combined R/S/D",
-      "path": "assets/videos/rovid001_combined.mp4"
+      "path": "assets/videos/rovid001_combined.mp4",
+      "poster": "assets/images/preview_rovid001_combined.webp"
     },
     {
       "key": "response_rovid012_future",
       "kind": "image",
       "title": "Place a lantern / Future response · static",
-      "path": "assets/images/rovid012_future.png"
+      "path": "assets/images/web_rovid012_future.webp",
+      "width": 832,
+      "height": 480
     },
     {
       "key": "response_rovid012_roles",
       "kind": "video",
       "title": "Place a lantern / Interaction roles · dynamic",
-      "path": "assets/videos/rovid012_roles.mp4"
+      "path": "assets/videos/rovid012_roles.mp4",
+      "poster": "assets/images/preview_rovid012_roles.webp"
     },
     {
       "key": "response_rovid012_support",
       "kind": "video",
       "title": "Place a lantern / Motion support · dynamic",
-      "path": "assets/videos/rovid012_support.mp4"
+      "path": "assets/videos/rovid012_support.mp4",
+      "poster": "assets/images/preview_rovid012_support.webp"
     },
     {
       "key": "response_rovid012_displacement",
       "kind": "video",
       "title": "Place a lantern / Displacement · dynamic",
-      "path": "assets/videos/rovid012_displacement.mp4"
+      "path": "assets/videos/rovid012_displacement.mp4",
+      "poster": "assets/images/preview_rovid012_displacement.webp"
     },
     {
       "key": "response_rovid012_combined",
       "kind": "video",
       "title": "Place a lantern / Predicted responses · combined R/S/D",
-      "path": "assets/videos/rovid012_combined.mp4"
+      "path": "assets/videos/rovid012_combined.mp4",
+      "poster": "assets/images/preview_rovid012_combined.webp"
     },
     {
       "key": "response_rovid024_future",
       "kind": "image",
       "title": "Turn a teddy bear / Future response · static",
-      "path": "assets/images/rovid024_future.png"
+      "path": "assets/images/web_rovid024_future.webp",
+      "width": 832,
+      "height": 480
     },
     {
       "key": "response_rovid024_roles",
       "kind": "video",
       "title": "Turn a teddy bear / Interaction roles · dynamic",
-      "path": "assets/videos/rovid024_roles.mp4"
+      "path": "assets/videos/rovid024_roles.mp4",
+      "poster": "assets/images/preview_rovid024_roles.webp"
     },
     {
       "key": "response_rovid024_support",
       "kind": "video",
       "title": "Turn a teddy bear / Motion support · dynamic",
-      "path": "assets/videos/rovid024_support.mp4"
+      "path": "assets/videos/rovid024_support.mp4",
+      "poster": "assets/images/preview_rovid024_support.webp"
     },
     {
       "key": "response_rovid024_displacement",
       "kind": "video",
       "title": "Turn a teddy bear / Displacement · dynamic",
-      "path": "assets/videos/rovid024_displacement.mp4"
+      "path": "assets/videos/rovid024_displacement.mp4",
+      "poster": "assets/images/preview_rovid024_displacement.webp"
     },
     {
       "key": "response_rovid024_combined",
       "kind": "video",
       "title": "Turn a teddy bear / Predicted responses · combined R/S/D",
-      "path": "assets/videos/rovid024_combined.mp4"
+      "path": "assets/videos/rovid024_combined.mp4",
+      "poster": "assets/images/preview_rovid024_combined.webp"
     },
     {
       "key": "response_rovid080_future",
       "kind": "image",
       "title": "Close a box / Future response · static",
-      "path": "assets/images/rovid080_future.png"
+      "path": "assets/images/web_rovid080_future.webp",
+      "width": 832,
+      "height": 480
     },
     {
       "key": "response_rovid080_roles",
       "kind": "video",
       "title": "Close a box / Interaction roles · dynamic",
-      "path": "assets/videos/rovid080_roles.mp4"
+      "path": "assets/videos/rovid080_roles.mp4",
+      "poster": "assets/images/preview_rovid080_roles.webp"
     },
     {
       "key": "response_rovid080_support",
       "kind": "video",
       "title": "Close a box / Motion support · dynamic",
-      "path": "assets/videos/rovid080_support.mp4"
+      "path": "assets/videos/rovid080_support.mp4",
+      "poster": "assets/images/preview_rovid080_support.webp"
     },
     {
       "key": "response_rovid080_displacement",
       "kind": "video",
       "title": "Close a box / Displacement · dynamic",
-      "path": "assets/videos/rovid080_displacement.mp4"
+      "path": "assets/videos/rovid080_displacement.mp4",
+      "poster": "assets/images/preview_rovid080_displacement.webp"
     },
     {
       "key": "response_rovid080_combined",
       "kind": "video",
       "title": "Close a box / Predicted responses · combined R/S/D",
-      "path": "assets/videos/rovid080_combined.mp4"
+      "path": "assets/videos/rovid080_combined.mp4",
+      "poster": "assets/images/preview_rovid080_combined.webp"
     },
     {
       "key": "response_web053_future",
       "kind": "image",
       "title": "Collect popcorn / Future response · static",
-      "path": "assets/images/web053_future.png"
+      "path": "assets/images/web_web053_future.webp",
+      "width": 832,
+      "height": 480
     },
     {
       "key": "response_web053_roles",
       "kind": "video",
       "title": "Collect popcorn / Interaction roles · dynamic",
-      "path": "assets/videos/web053_roles.mp4"
+      "path": "assets/videos/web053_roles.mp4",
+      "poster": "assets/images/preview_web053_roles.webp"
     },
     {
       "key": "response_web053_support",
       "kind": "video",
       "title": "Collect popcorn / Motion support · dynamic",
-      "path": "assets/videos/web053_support.mp4"
+      "path": "assets/videos/web053_support.mp4",
+      "poster": "assets/images/preview_web053_support.webp"
     },
     {
       "key": "response_web053_displacement",
       "kind": "video",
       "title": "Collect popcorn / Displacement · dynamic",
-      "path": "assets/videos/web053_displacement.mp4"
+      "path": "assets/videos/web053_displacement.mp4",
+      "poster": "assets/images/preview_web053_displacement.webp"
     },
     {
       "key": "response_web053_combined",
       "kind": "video",
       "title": "Collect popcorn / Predicted responses · combined R/S/D",
-      "path": "assets/videos/web053_combined.mp4"
+      "path": "assets/videos/web053_combined.mp4",
+      "poster": "assets/images/preview_web053_combined.webp"
     },
     {
       "key": "response_web030_future",
       "kind": "image",
       "title": "Lift a cloth / Future response · static",
-      "path": "assets/images/web030_future.png"
+      "path": "assets/images/web_web030_future.webp",
+      "width": 832,
+      "height": 480
     },
     {
       "key": "response_web030_roles",
       "kind": "video",
       "title": "Lift a cloth / Interaction roles · dynamic",
-      "path": "assets/videos/web030_roles.mp4"
+      "path": "assets/videos/web030_roles.mp4",
+      "poster": "assets/images/preview_web030_roles.webp"
     },
     {
       "key": "response_web030_support",
       "kind": "video",
       "title": "Lift a cloth / Motion support · dynamic",
-      "path": "assets/videos/web030_support.mp4"
+      "path": "assets/videos/web030_support.mp4",
+      "poster": "assets/images/preview_web030_support.webp"
     },
     {
       "key": "response_web030_displacement",
       "kind": "video",
       "title": "Lift a cloth / Displacement · dynamic",
-      "path": "assets/videos/web030_displacement.mp4"
+      "path": "assets/videos/web030_displacement.mp4",
+      "poster": "assets/images/preview_web030_displacement.webp"
     },
     {
       "key": "response_web030_combined",
       "kind": "video",
       "title": "Lift a cloth / Predicted responses · combined R/S/D",
-      "path": "assets/videos/web030_combined.mp4"
+      "path": "assets/videos/web030_combined.mp4",
+      "poster": "assets/images/preview_web030_combined.webp"
     },
     {
       "key": "response_tidy025_rgb",
       "kind": "video",
       "title": "Hang a bag / Generated video",
       "path": "assets/videos/tidy025_rgb.mp4",
-      "poster": "assets/images/tidy025_poster.jpg"
+      "poster": "assets/images/preview_tidy025_rgb.webp"
     },
     {
       "key": "response_tidy025_future",
       "kind": "image",
       "title": "Hang a bag / future",
-      "path": "assets/images/tidy025_future.png"
+      "path": "assets/images/web_tidy025_future.webp",
+      "width": 832,
+      "height": 480
     },
     {
       "key": "response_tidy025_roles",
       "kind": "video",
       "title": "Hang a bag / roles",
-      "path": "assets/videos/tidy025_roles.mp4"
+      "path": "assets/videos/tidy025_roles.mp4",
+      "poster": "assets/images/preview_tidy025_roles.webp"
     },
     {
       "key": "response_tidy025_support",
       "kind": "video",
       "title": "Hang a bag / support",
-      "path": "assets/videos/tidy025_support.mp4"
+      "path": "assets/videos/tidy025_support.mp4",
+      "poster": "assets/images/preview_tidy025_support.webp"
     },
     {
       "key": "response_tidy025_displacement",
       "kind": "video",
       "title": "Hang a bag / displacement",
-      "path": "assets/videos/tidy025_displacement.mp4"
+      "path": "assets/videos/tidy025_displacement.mp4",
+      "poster": "assets/images/preview_tidy025_displacement.webp"
     },
     {
       "key": "response_tidy025_combined",
       "kind": "video",
       "title": "Hang a bag / combined",
-      "path": "assets/videos/tidy025_combined.mp4"
+      "path": "assets/videos/tidy025_combined.mp4",
+      "poster": "assets/images/preview_tidy025_combined.webp"
     },
     {
       "key": "response_web050_rgb",
       "kind": "video",
       "title": "Drop a baseball into a basin / Generated video",
       "path": "assets/videos/web050_rgb.mp4",
-      "poster": "assets/images/web050_poster.jpg"
+      "poster": "assets/images/preview_web050_rgb.webp"
     },
     {
       "key": "response_web050_future",
       "kind": "image",
       "title": "Drop a baseball into a basin / future",
-      "path": "assets/images/web050_future.png"
+      "path": "assets/images/web_web050_future.webp",
+      "width": 832,
+      "height": 480
     },
     {
       "key": "response_web050_roles",
       "kind": "video",
       "title": "Drop a baseball into a basin / roles",
-      "path": "assets/videos/web050_roles.mp4"
+      "path": "assets/videos/web050_roles.mp4",
+      "poster": "assets/images/preview_web050_roles.webp"
     },
     {
       "key": "response_web050_support",
       "kind": "video",
       "title": "Drop a baseball into a basin / support",
-      "path": "assets/videos/web050_support.mp4"
+      "path": "assets/videos/web050_support.mp4",
+      "poster": "assets/images/preview_web050_support.webp"
     },
     {
       "key": "response_web050_displacement",
       "kind": "video",
       "title": "Drop a baseball into a basin / displacement",
-      "path": "assets/videos/web050_displacement.mp4"
+      "path": "assets/videos/web050_displacement.mp4",
+      "poster": "assets/images/preview_web050_displacement.webp"
     },
     {
       "key": "response_web050_combined",
       "kind": "video",
       "title": "Drop a baseball into a basin / combined",
-      "path": "assets/videos/web050_combined.mp4"
+      "path": "assets/videos/web050_combined.mp4",
+      "poster": "assets/images/preview_web050_combined.webp"
     },
     {
       "key": "response_web108_rgb",
       "kind": "video",
       "title": "Fold a towel into a basket / Generated video",
       "path": "assets/videos/web108_rgb.mp4",
-      "poster": "assets/images/web108_poster.jpg"
+      "poster": "assets/images/preview_web108_rgb.webp"
     },
     {
       "key": "response_web108_future",
       "kind": "image",
       "title": "Fold a towel into a basket / future",
-      "path": "assets/images/web108_future.png"
+      "path": "assets/images/web_web108_future.webp",
+      "width": 832,
+      "height": 480
     },
     {
       "key": "response_web108_roles",
       "kind": "video",
       "title": "Fold a towel into a basket / roles",
-      "path": "assets/videos/web108_roles.mp4"
+      "path": "assets/videos/web108_roles.mp4",
+      "poster": "assets/images/preview_web108_roles.webp"
     },
     {
       "key": "response_web108_support",
       "kind": "video",
       "title": "Fold a towel into a basket / support",
-      "path": "assets/videos/web108_support.mp4"
+      "path": "assets/videos/web108_support.mp4",
+      "poster": "assets/images/preview_web108_support.webp"
     },
     {
       "key": "response_web108_displacement",
       "kind": "video",
       "title": "Fold a towel into a basket / displacement",
-      "path": "assets/videos/web108_displacement.mp4"
+      "path": "assets/videos/web108_displacement.mp4",
+      "poster": "assets/images/preview_web108_displacement.webp"
     },
     {
       "key": "response_web108_combined",
       "kind": "video",
       "title": "Fold a towel into a basket / combined",
-      "path": "assets/videos/web108_combined.mp4"
+      "path": "assets/videos/web108_combined.mp4",
+      "poster": "assets/images/preview_web108_combined.webp"
     },
     {
       "key": "compare_single_arm_0055_wan",
@@ -1264,7 +1395,8 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
         "assets/videos/single_arm_0055_wan.mp4",
         "video/single_arm_0055_wan.mp4",
         "videos/single_arm_0055_wan.mp4"
-      ]
+      ],
+      "poster": "assets/images/preview_single_arm_0055_wan.webp"
     },
     {
       "key": "compare_single_arm_0055_cosmos",
@@ -1275,7 +1407,8 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
         "assets/videos/single_arm_0055_cosmos.mp4",
         "video/single_arm_0055_cosmos.mp4",
         "videos/single_arm_0055_cosmos.mp4"
-      ]
+      ],
+      "poster": "assets/images/preview_single_arm_0055_cosmos.webp"
     },
     {
       "key": "compare_single_arm_0055_abot",
@@ -1286,7 +1419,8 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
         "assets/videos/single_arm_0055_abot.mp4",
         "video/single_arm_0055_abot.mp4",
         "videos/single_arm_0055_abot.mp4"
-      ]
+      ],
+      "poster": "assets/images/preview_single_arm_0055_abot.webp"
     },
     {
       "key": "compare_single_arm_0055_physisforcing",
@@ -1297,7 +1431,8 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
         "assets/videos/single_arm_0055_physisforcing.mp4",
         "video/single_arm_0055_physisforcing.mp4",
         "videos/single_arm_0055_physisforcing.mp4"
-      ]
+      ],
+      "poster": "assets/images/preview_single_arm_0055_physisforcing.webp"
     },
     {
       "key": "compare_single_arm_0055_ours",
@@ -1308,21 +1443,28 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
         "assets/videos/single_arm_0055_ours.mp4",
         "video/single_arm_0055_ours.mp4",
         "videos/single_arm_0055_ours.mp4"
-      ]
+      ],
+      "poster": "assets/images/preview_single_arm_0055_ours.webp"
     },
     {
       "key": "compare_single_arm_0055_input",
       "kind": "image",
       "title": "Pick up a plastic cup / First frame from ReactWorld",
-      "path": "",
-      "firstFrameFrom": "compare_single_arm_0055_ours"
+      "path": "assets/images/preview_compare_single_arm_0055_input.webp",
+      "firstFrameFrom": "compare_single_arm_0055_ours",
+      "width": 832,
+      "height": 480,
+      "precomputedFirstFrame": true
     },
     {
       "key": "compare_humanoid_0091_input",
       "kind": "image",
       "title": "Place a pillow on the sofa / First frame from ReactWorld",
-      "path": "",
-      "firstFrameFrom": "compare_humanoid_0091_ours"
+      "path": "assets/images/preview_compare_humanoid_0091_input.webp",
+      "firstFrameFrom": "compare_humanoid_0091_ours",
+      "width": 832,
+      "height": 480,
+      "precomputedFirstFrame": true
     },
     {
       "key": "compare_humanoid_0091_wan",
@@ -1334,7 +1476,8 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
         "video/humanoid_0091_wan.mp4",
         "videos/humanoid_0091_wan.mp4",
         "humanoid_0091_wan.mp4"
-      ]
+      ],
+      "poster": "assets/images/preview_humanoid_0091_wan.webp"
     },
     {
       "key": "compare_humanoid_0091_cosmos",
@@ -1346,7 +1489,8 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
         "video/humanoid_0091_cosmos.mp4",
         "videos/humanoid_0091_cosmos.mp4",
         "humanoid_0091_cosmos.mp4"
-      ]
+      ],
+      "poster": "assets/images/preview_humanoid_0091_cosmos.webp"
     },
     {
       "key": "compare_humanoid_0091_abot",
@@ -1358,7 +1502,8 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
         "video/humanoid_0091_abot.mp4",
         "videos/humanoid_0091_abot.mp4",
         "humanoid_0091_abot.mp4"
-      ]
+      ],
+      "poster": "assets/images/preview_humanoid_0091_abot.webp"
     },
     {
       "key": "compare_humanoid_0091_physisforcing",
@@ -1370,7 +1515,8 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
         "video/humanoid_0091_physisforcing.mp4",
         "videos/humanoid_0091_physisforcing.mp4",
         "humanoid_0091_physisforcing.mp4"
-      ]
+      ],
+      "poster": "assets/images/preview_humanoid_0091_physisforcing.webp"
     },
     {
       "key": "compare_humanoid_0091_ours",
@@ -1382,7 +1528,8 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
         "video/humanoid_0091_ours.mp4",
         "videos/humanoid_0091_ours.mp4",
         "humanoid_0091_ours.mp4"
-      ]
+      ],
+      "poster": "assets/images/preview_humanoid_0091_ours.webp"
     }
   ],
   "tables": {
@@ -1831,7 +1978,8 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
     "Bin Xiao": "Huawei Technologies Co., Ltd.",
     "Xuan Zhou": "Huawei Technologies Co., Ltd.",
     "Dong Zhang": "Huawei Technologies Co., Ltd."
-  }
+  },
+  "overviewVolume": 0.55
 }
 </script>
   <script type="application/json" id="embedded-images">{}</script>
@@ -1976,6 +2124,7 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
       button.className="overview-sound-toggle";button.type="button";
       button.innerHTML='<svg class="sound-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 5.5 6 9H2.5v6H6l4.5 3.5z"/><path d="m16 9 6 6m0-6-6 6"/></svg><svg class="sound-on-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 5.5 6 9H2.5v6H6l4.5 3.5z"/><path d="M15 8.5a5 5 0 0 1 0 7m3-10a9 9 0 0 1 0 13"/></svg><span class="overview-sound-label">Sound off</span>';
       var label=button.querySelector(".overview-sound-label");
+      if(!SITE.overviewAudio&&typeof SITE.overviewVolume==="number")media.volume=SITE.overviewVolume;
       var lastVolume=media.volume>0?media.volume:.7;
       var path=safeLink(SITE.overviewAudio||"");
       var external=!!path,music=null,enabled=true,preferred=true,buffering=false,serial=0,pendingMusicPlay=false,waitingForGesture=false;
@@ -2115,8 +2264,14 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
       else placeholder.innerHTML='<span class="placeholder-glyph" aria-hidden="true">'+(slot.kind==="image"?"＋":"▷")+'</span><span class="placeholder-title">'+escapeHTML(options.placeholder||slot.placeholder||"Video reserved")+'</span><span class="placeholder-copy">'+escapeHTML(options.copy||(slot.kind==="image"?"Add the final figure to this area.":"Add your local video to this area."))+'</span>';
       box.appendChild(placeholder);
       var media=document.createElement(slot.kind==="image"?"img":"video");
-      if(slot.kind==="image"){media.alt=slot.title;media.decoding="async";}
-      else{media.controls=true;media.muted=true;media.playsInline=true;media.preload="metadata";if(slot.poster)media.poster=slot.poster;}
+      if(slot.kind==="image"){
+        media.alt=slot.title;media.decoding="async";media.loading="lazy";
+        if(slot.width&&slot.height){media.width=slot.width;media.height=slot.height;}
+      }else{
+        media.controls=true;media.muted=true;media.playsInline=true;media.preload="metadata";
+        media.setAttribute("loading","lazy");
+        if(slot.poster){media.poster=slot.poster;box.classList.add("has-poster");}
+      }
       media.dataset.slotKey=key;media.setAttribute("aria-hidden","true");box.appendChild(media);
       if(key==="overview"&&slot.kind==="video")installOverviewSound(box,media);
       var replace=document.createElement("button");replace.className="media-edit";replace.textContent="替换素材";replace.setAttribute("aria-label","替换素材："+slot.title);replace.addEventListener("click",function(){chooseSingle(key);});box.appendChild(replace);
@@ -2124,7 +2279,7 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
       var markReady=function(){
         if(key==="fig2"&&media.naturalWidth&&media.naturalHeight)box.style.aspectRatio=media.naturalWidth+"/"+media.naturalHeight;
         if(key==="overview"&&media.videoWidth&&media.videoHeight)box.style.aspectRatio=media.videoWidth+"/"+media.videoHeight;
-        if(slot.kind==="image"&&slot.firstFrameFrom&&!box._frameCanvas&&media.naturalWidth){
+        if(slot.kind==="image"&&slot.firstFrameFrom&&(!slot.precomputedFirstFrame||localFiles.has(key)||localFiles.has(slot.firstFrameFrom))&&!box._frameCanvas&&media.naturalWidth){
           try{paintFirstFrame(box,media);}catch(error){}
         }
         box.classList.add("ready");media.removeAttribute("aria-hidden");readyKeys.add(key);updateMediaStatus();if(player)player.refresh();if(responsePlayer)responsePlayer.refresh();if(interventionPlayer)interventionPlayer.refresh();
@@ -2153,15 +2308,22 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
       var file=localFiles.get(key);
       box.dataset.fallbackUsed="0";box._pathIndex=0;box.classList.remove("ready");
       disposeFirstFrame(box);media.hidden=false;
-      if(slot.firstFrameFrom&&!file&&!EMBEDDED[key]){loadFirstFrame(box);return;}
+      if(slot.firstFrameFrom&&!file&&!EMBEDDED[key]&&(!slot.path||localFiles.has(slot.firstFrameFrom))){loadFirstFrame(box);return;}
       if(file){media.src=file.url;return;}
       if(slot.preferEmbedded&&EMBEDDED[key]){box.dataset.fallbackUsed="1";media.src=EMBEDDED[key];return;}
-      if(SITE.autoLoadPaths && slot.path){media.dataset.pendingSrc=slot.path;observer.observe(box);return;}
+      if(SITE.autoLoadPaths && slot.path){media.dataset.pendingSrc=slot.path;(slot.kind==="image"?imageObserver:observer).observe(box);return;}
       if(EMBEDDED[key]){box.dataset.fallbackUsed="1";media.src=EMBEDDED[key];return;}
     }
-    var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){var media=entry.target.querySelector("img,video");if(media.dataset.pendingSrc){media.src=media.dataset.pendingSrc;delete media.dataset.pendingSrc;}observer.unobserve(entry.target);}});},{rootMargin:"300px"});
+    function activateMediaBox(box){
+      var media=box.querySelector("img,video");
+      if(media&&media.dataset.pendingSrc){media.src=media.dataset.pendingSrc;delete media.dataset.pendingSrc;}
+      observer.unobserve(box);imageObserver.unobserve(box);
+    }
+    function activateVisibleMedia(entries){entries.forEach(function(entry){if(entry.isIntersecting)activateMediaBox(entry.target);});}
+    var observer=new IntersectionObserver(activateVisibleMedia,{rootMargin:"160px"});
+    var imageObserver=new IntersectionObserver(activateVisibleMedia,{rootMargin:"900px"});
     function removeMediaTree(root) {
-      root.querySelectorAll(".media").forEach(function(box){var set=mediaNodes.get(box.dataset.mediaKey);if(set)set.delete(box);observer.unobserve(box);disposeFirstFrame(box);var video=box.querySelector("video");if(video){video.pause();video.removeAttribute("src");video.load();}});
+      root.querySelectorAll(".media").forEach(function(box){var set=mediaNodes.get(box.dataset.mediaKey);if(set)set.delete(box);observer.unobserve(box);imageObserver.unobserve(box);disposeFirstFrame(box);var video=box.querySelector("video");if(video){video.pause();video.removeAttribute("src");video.load();}});
       root.replaceChildren();
     }
     function galleryItem(key,title,note,tone) {
@@ -2177,7 +2339,7 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
       head.innerHTML='<h4>'+escapeHTML(title)+'</h4>'+(symbol?'<span class="response-badge">'+escapeHTML(symbol)+'</span>':'');
       figure.appendChild(head);
       var box=makeMedia(key,{placeholder:title,copy:field==="future"?"Add the future response image.":"Add the matching local video."});box.dataset.responseField=field;
-      var video=box.querySelector("video");if(video){video.controls=false;var pending=video.dataset.pendingSrc;if(pending){observer.unobserve(box);video.src=pending;delete video.dataset.pendingSrc;}}
+      var video=box.querySelector("video");if(video)video.controls=false;
       figure.appendChild(box);
       if(copy){var caption=document.createElement("figcaption");caption.textContent=copy;figure.appendChild(caption);}
       return figure;
@@ -2258,7 +2420,7 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
       if(responsePlayer)responsePlayer.refresh(true);
     }
     function wireResponseControls() {
-      $("response-play").addEventListener("click",function(){if(responsePlayer.playing||responsePlayer.pendingAutoplay)responsePlayer.stop();else responsePlayer.play();});
+      $("response-play").addEventListener("click",function(){if(responsePlayer.playing||responsePlayer.pendingAutoplay)responsePlayer.stop();else responsePlayer.queueAutoplay();});
       $("response-reset").addEventListener("click",function(){responsePlayer.stop();responsePlayer.seek(0);responsePlayer.play();});
       $("response-scrub").addEventListener("input",function(){var wasPlaying=responsePlayer.playing;responsePlayer.stop();responsePlayer.seek(this.value/1000*responsePlayer.duration);if(wasPlaying)responsePlayer.play();});
       $("response-speed").addEventListener("change",function(){var wasPlaying=responsePlayer.playing;responsePlayer.stop();responsePlayer.speed=Number(this.value);if(wasPlaying)responsePlayer.play();});
@@ -2336,7 +2498,7 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
       input.appendChild(makeMedia(c.input,{placeholder:"First frame",copy:"First frame from the ReactWorld video."}));$("compare-grid").appendChild(input);
       var methodIDs=SITE.methods.map(function(m){return m.id;});
       methodIDs.forEach(function(id){var method=SITE.methods.find(function(m){return m.id===id;}),col=document.createElement("div");col.className="compare-col"+(id==="ours"?" ours-col":"");var label=comparisonMethodLabel(method);col.appendChild(label);col.appendChild(makeMedia("compare_"+c.id+"_"+id));$("compare-grid").appendChild(col);});
-      $("compare-grid").querySelectorAll(".media").forEach(function(box){var video=box.querySelector("video");if(video&&video.dataset.pendingSrc){observer.unobserve(box);video.src=video.dataset.pendingSrc;delete video.dataset.pendingSrc;}});
+      // Videos outside the viewport keep their lightweight poster until needed.
       if(player)player.refresh(true);
     }
     function SyncPlayer(prefix, rootID) {
@@ -2350,13 +2512,17 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
       if(reset)this.position=0;
       var disabled=this.duration<=0||(this.requiredVideos&&this.videos.length<this.requiredVideos);
       if(disabled&&this.requiredVideos&&this.playing)this.stop();
-      this.control("play").disabled=disabled&&!this.pendingAutoplay;this.control("reset").disabled=disabled;this.control("scrub").disabled=disabled;this.paint();this.tryAutoplay();
+      this.control("play").disabled=!$(this.rootID).querySelector("video:not([data-static-frame])");this.control("reset").disabled=disabled;this.control("scrub").disabled=disabled;this.paint();this.tryAutoplay();
     };
-    SyncPlayer.prototype.paint=function(){this.control("time").textContent=this.position.toFixed(1)+" / "+this.duration.toFixed(1)+" s";this.control("scrub").value=this.duration?String(Math.round(1000*this.position/this.duration)):"0";this.control("play").textContent=(this.playing||this.pendingAutoplay)?"Ⅱ Pause":"▶ Play together";};
+    SyncPlayer.prototype.paint=function(){this.control("time").textContent=this.position.toFixed(1)+" / "+this.duration.toFixed(1)+" s";this.control("scrub").value=this.duration?String(Math.round(1000*this.position/this.duration)):"0";this.control("play").textContent=this.playing?"Ⅱ Pause":this.pendingAutoplay?"Ⅱ Loading…":"▶ Play together";};
     SyncPlayer.prototype.stop=function(){this.playing=false;this.pendingAutoplay=false;this.runID++;cancelAnimationFrame(this.frame);this.videos.forEach(function(v){v.pause();});this.paint();};
-    SyncPlayer.prototype.queueAutoplay=function(){this.pendingAutoplay=true;this.refresh();};
+    SyncPlayer.prototype.queueAutoplay=function(){
+      this.pendingAutoplay=true;
+      $(this.rootID).querySelectorAll(".media").forEach(activateMediaBox);
+      this.refresh();
+    };
     SyncPlayer.prototype.tryAutoplay=function(){
-      if(!this.pendingAutoplay||(this!==responsePlayer&&this!==player))return;
+      if(!this.pendingAutoplay)return;
       if(document.hidden){this.stop();return;}
       if(this===responsePlayer){var primary=$(this.rootID).querySelector('[data-response-field="rgb"] video');if(!primary||primary.error){this.stop();return;}if(primary.readyState<1)return;}
       var candidates=Array.from($(this.rootID).querySelectorAll("video:not([data-static-frame])"));
@@ -2443,7 +2609,7 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
     function enlargeFigure(key) {
       var box=Array.from(mediaNodes.get(key)||[]).find(function(node){return node.classList.contains("ready");});
       if(!box){toast("请先添加最终图片。");return;}
-      $("enlarged-figure").src=box.querySelector("img").currentSrc||box.querySelector("img").src;$("enlarged-figure").alt=slotByKey.get(key).title;$("figure-dialog-title").textContent=slotByKey.get(key).title;$("figure-dialog").showModal();
+      $("enlarged-figure").src=slotByKey.get(key).fullPath||box.querySelector("img").currentSrc||box.querySelector("img").src;$("enlarged-figure").alt=slotByKey.get(key).title;$("figure-dialog-title").textContent=slotByKey.get(key).title;$("figure-dialog").showModal();
     }
     function exportHTML() {
       var copy=new DOMParser().parseFromString(originalSource,"text/html"),config=copy.getElementById("site-config");
@@ -2459,8 +2625,8 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
       renderResponseCases();renderResponseDemo();responsePlayer=new SyncPlayer("response","response-media");responsePlayer.refresh(true);wireResponseControls();
       [["intervention_normal","Normal feedback","Unmodified internal displacement",""],["intervention_left","Leftward offset","Internal displacement intervention","coral"],["intervention_right","Rightward offset","Internal displacement intervention","teal"]].forEach(function(x){$("intervention-grid").appendChild(galleryItem(...x));});
       interventionPlayer=new SyncPlayer("intervention","intervention-grid");interventionPlayer.requiredVideos=3;interventionPlayer.refresh(true);
-      $("intervention-grid").querySelectorAll(".media").forEach(function(box){var video=box.querySelector("video");if(video.dataset.pendingSrc){observer.unobserve(box);video.src=video.dataset.pendingSrc;delete video.dataset.pendingSrc;}});
-      $("intervention-play").addEventListener("click",function(){if(interventionPlayer.playing)interventionPlayer.stop();else interventionPlayer.play();});
+      // Intervention media uses the same viewport-driven loading as other sections.
+      $("intervention-play").addEventListener("click",function(){if(interventionPlayer.playing||interventionPlayer.pendingAutoplay)interventionPlayer.stop();else interventionPlayer.queueAutoplay();});
       $("intervention-reset").addEventListener("click",function(){interventionPlayer.stop();interventionPlayer.seek(0);interventionPlayer.play();});
       $("intervention-scrub").addEventListener("input",function(){var wasPlaying=interventionPlayer.playing;interventionPlayer.stop();interventionPlayer.seek(this.value/1000*interventionPlayer.duration);if(wasPlaying)interventionPlayer.play();});
       $("intervention-speed").addEventListener("change",function(){var wasPlaying=interventionPlayer.playing;interventionPlayer.stop();interventionPlayer.speed=Number(this.value);if(wasPlaying)interventionPlayer.play();});
@@ -2486,6 +2652,10 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
       $("copy-citation").addEventListener("click",async function(){try{await navigator.clipboard.writeText(SITE.citation);toast("Citation copied.");}catch(error){var range=document.createRange();range.selectNodeContents($("citation-text"));window.getSelection().removeAllRanges();window.getSelection().addRange(range);toast("Citation selected. Press Ctrl/Cmd+C to copy.");}});
       document.addEventListener("dragover",function(event){event.preventDefault();});document.addEventListener("drop",function(event){event.preventDefault();});
       document.addEventListener("visibilitychange",function(){if(document.hidden){if(player&&(player.playing||player.pendingAutoplay))player.stop();if(responsePlayer&&(responsePlayer.playing||responsePlayer.pendingAutoplay))responsePlayer.stop();if(interventionPlayer&&interventionPlayer.playing)interventionPlayer.stop();}});
+      // Stop offscreen players so auto-next cannot keep downloading unseen tasks.
+      [["comparison-panel",player],["response-panel",responsePlayer],["feedback",interventionPlayer]].forEach(function(pair){
+        new IntersectionObserver(function(entries){if(!entries[0].isIntersecting&&(pair[1].playing||pair[1].pendingAutoplay))pair[1].stop();}).observe($(pair[0]));
+      });
       wireTabs('[role="tab"]');updateMediaStatus();
     }
     document.addEventListener("DOMContentLoaded",init);
@@ -2497,11 +2667,11 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
     var root=document.getElementById('top'),backdrop=document.getElementById('hero-ambience'),button=document.getElementById('hero-motion-toggle');
     if(!root||!backdrop||!button)return;
     var videos=Array.from(backdrop.querySelectorAll('video')),reduced=window.matchMedia('(prefers-reduced-motion: reduce)'),compact=window.matchMedia('(max-width: 680px)');
-    var paused=false,visible=true;
+    var paused=false,visible=true,backgroundReady=document.readyState==="complete";
     function allowed(){return !reduced.matches&&!compact.matches&&!(navigator.connection&&navigator.connection.saveData);}
     function text(){button.textContent=paused?'▷ Play background':'Ⅱ Pause background';button.setAttribute('aria-pressed',String(paused));}
     function sync(){
-      var run=allowed()&&visible&&!document.hidden&&!paused;
+      var run=backgroundReady&&allowed()&&visible&&!document.hidden&&!paused;
       button.hidden=!allowed()||videos.every(function(video){return !!video.error;});text();
       videos.forEach(function(video){
         if(run){
@@ -2519,6 +2689,11 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
     document.addEventListener('visibilitychange',sync);
     [reduced,compact].forEach(function(query){if(query.addEventListener)query.addEventListener('change',sync);else if(query.addListener)query.addListener(sync);});
     if('IntersectionObserver' in window)new IntersectionObserver(function(entries){visible=entries[0].isIntersecting;sync();},{threshold:0}).observe(backdrop);
+    function startBackground(){
+      function ready(){backgroundReady=true;sync();}
+      if(window.requestIdleCallback)window.requestIdleCallback(ready,{timeout:1500});else ready();
+    }
+    if(backgroundReady)startBackground();else window.addEventListener('load',startBackground,{once:true});
     sync();
   })();
 
