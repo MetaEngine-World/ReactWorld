@@ -1,2 +1,0 @@
-可把最终 PDF 放为 reactworld.pdf，然后在“本地素材”面板中把 Paper 地址设置为 assets/paper/reactworld.pdf。
-当前未把工作稿作为已发布论文打包。
