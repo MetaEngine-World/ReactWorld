@@ -2512,7 +2512,7 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
         node.innerHTML=icons[item[0]]+item[1]+(!url?' <span class="quiet" style="font-size:10px">soon</span>':"");$("resource-links").appendChild(node);
       });
       var demo=document.createElement("a");demo.className="btn primary";demo.href="#overview";demo.innerHTML=iconPlay+"Watch overview";$("resource-links").prepend(demo);
-      var arxiv=document.createElement("a");arxiv.className="btn";arxiv.href="https://arxiv.org/abs/2611.06120";arxiv.target="_blank";arxiv.rel="noopener noreferrer";arxiv.innerHTML=icons.paper+"arXiv";demo.after(arxiv);
+      var arxiv=document.createElement("a");arxiv.className="btn";arxiv.href="https://arxiv.org/abs/2611.06120";arxiv.target="_blank";arxiv.rel="noopener noreferrer";arxiv.innerHTML=icons.paper+"arXiv";$("resource-links").querySelector("a.btn:not(.primary)").after(arxiv);
       var citation=SITE.citation||"";$("citation-text").textContent=citation;$("citation-text").hidden=!citation;$("copy-citation").hidden=!citation;$("citation-pending").hidden=!!citation;
       $("preview-label").hidden=!SITE.showLocalTools;
       $("local-tools").hidden=!SITE.showLocalTools;
