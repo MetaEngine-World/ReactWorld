@@ -289,55 +289,50 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
 .media.has-poster:not(.ready) video{opacity:1;pointer-events:auto}
 .media.has-poster:not(.ready) .placeholder{display:none}
 </style>
+<link rel="stylesheet" href="motion.css?v=wordmark-accents">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <div class="edit-banner editor-hint">素材编辑模式 · 点击图片或视频右上角“替换素材”即可选择本地文件。选择仅用于当前浏览器预览。</div>
   <header class="site-nav">
     <div class="wrap nav-inner">
-      <a class="wordmark" href="#top" aria-label="ReactWorld home">React<span class="brand-accent">World</span></a>
-      <nav class="nav-links" aria-label="Main navigation">
+      <a class="wordmark" href="#top" aria-label="ReactWorld home"><span class="rw-name">React<span class="rw-world">World</span></span></a>
+      <button id="nav-toggle" class="nav-toggle" aria-label="Open navigation" aria-controls="main-navigation" aria-expanded="false"><span></span><span></span></button>
+      <nav id="main-navigation" class="nav-links" aria-label="Main navigation">
         <a href="#responses">Responses</a><a href="#comparisons">Comparisons</a><a href="#method">Method</a><a href="#feedback">Analysis</a><a href="#results">Results</a><a href="#citation">Citation</a>
       </nav>
-      <span class="nav-local" id="preview-label">Local draft</span>
+      <span class="nav-local" id="preview-label" hidden>Local draft</span>
     </div>
   </header>
   <main id="main">
-    <section class="hero" id="top" aria-labelledby="project-title">
-      <div class="hero-ambience" id="hero-ambience" aria-hidden="true">
-        <div class="hero-scene hero-scene-left">
-          <img src="assets/images/web_web077_future.webp" alt="" decoding="async">
-          <video muted loop playsinline preload="none" tabindex="-1" disablepictureinpicture data-background-src="assets/videos/ambience_web077.mp4"></video>
-        </div>
-        <div class="hero-scene hero-scene-right">
-          <img src="assets/images/web_rovid080_future.webp" alt="" decoding="async">
-          <video muted loop playsinline preload="none" tabindex="-1" disablepictureinpicture data-background-src="assets/videos/ambience_rovid080.mp4"></video>
-        </div>
-      </div>
-      <button class="hero-motion-toggle" id="hero-motion-toggle" type="button" aria-pressed="false" hidden>Ⅱ Pause background</button>
-      <div class="wrap hero-heading">
-        <h1 id="project-title">React<span class="brand-accent">World</span></h1>
-        <p class="paper-title">Structuring <span class="title-accent">Interaction Responses</span> for Embodied Video Generation</p>
-        <p class="byline" id="byline" hidden></p>
-        <p class="affiliations" id="affiliations" hidden></p>
-        <p class="venue" id="venue" hidden></p>
-        <div class="resource-links" id="resource-links" aria-label="Project resources"></div>
-      </div>
-      <div class="wrap">
-        <div class="hero-media" id="overview">
-          <div id="overview-mount"></div>
-        </div>
-        <p class="hero-caption"><strong>From intent to response.</strong> One initial frame and a task instruction; interaction roles and local dynamics are predicted inside the generator.</p>
-        <div class="stats" aria-label="Selected results from the current manuscript">
-          <div class="stat"><div class="stat-value">77.51</div><div class="stat-label">RBench · Average ↑</div><div class="stat-note">Five tasks · four embodiments</div></div>
-          <div class="stat"><div class="stat-value">86.98</div><div class="stat-label">EZS-Bench · Domain ↑</div><div class="stat-note">Embodied-domain performance</div></div>
-          <div class="stat"><div class="stat-value">81.87</div><div class="stat-label">EZS-Bench · Average ↑</div><div class="stat-note">Domain and perceptual quality</div></div>
+    <section id="top" class="masthead" aria-labelledby="project-title">
+  <div class="film-wall" aria-hidden="true"><picture><source media="(max-width:680px)" srcset="film/tall.webp"><img src="film/wide.webp" alt="" fetchpriority="high"></picture><video id="wall-video" muted loop playsinline preload="none" tabindex="-1"></video></div>
+  <div class="wall-shade"></div>
+  <div class="wall-labels" aria-hidden="true"><span>Fold a tablecloth</span><span>Transfer a package</span><span>Collect popcorn</span><span>Turn a teddy bear</span><span>Carry an object</span><span>Place a lantern</span></div>
+  <div class="mast-copy">
+    <h1 id="project-title"><span class="rw-name">React<span class="rw-world">World</span></span></h1>
+    <div class="mast-rule"></div>
+    <p class="mast-sub">Structuring Interaction Responses<br>for Embodied Video Generation</p>
+    <p class="byline" id="byline" hidden></p><p class="affiliations" id="affiliations" hidden></p><p class="venue" id="venue" hidden></p>
+    <div class="resource-links" id="resource-links" aria-label="Project resources"></div>
+  </div>
+  <button class="film-toggle" id="film-toggle" aria-label="Pause background video" aria-pressed="false" hidden><span aria-hidden="true">Ⅱ</span></button>
+</section>
+<div class="score-band" aria-label="Benchmark highlights"><div><b>77.51</b><span>RBench · Average</span></div><div><b>86.98</b><span>EZS-Bench · Domain</span></div><div><b>81.87</b><span>EZS-Bench · Average</span></div></div>
+    <section class="section abstract-band" id="abstract" aria-labelledby="abstract-title">
+      <div class="wrap abstract-layout">
+        <div><span class="eyebrow">Overview</span><h2 id="abstract-title">Model the <br><span class="section-accent">response.</span></h2></div>
+        <div class="abstract-text">
+          <p>Embodied video models need to predict how objects respond to a robot’s actions. These responses are often <strong>local, brief, and critical to the task</strong>: a cloth corner lifts before the rest unfolds, and an indirectly affected object responds differently from the manipulation target.</p>
+          <p><strong><span class="rw-name">React<span class="rw-world">World</span></span></strong> structures this process into interaction roles, future response strength, and interval motion. A response feedback adapter uses these predictions to update object features relative to a zero-dynamics reference and to guide temporal attention with displacement.</p>
+          <details><summary>Read the project abstract</summary><p><span class="rw-name">React<span class="rw-world">World</span></span> anticipates structured interaction responses from the video generator’s intermediate features within each denoising forward pass. The interaction response field predictor describes participant roles, future motion response strength, motion support, and displacement. The response feedback adapter constructs dynamics-dependent object increments by subtracting a zero-dynamics reference, and turns predicted displacement into a positional bias for temporal attention. Experiments in the current manuscript report a RBench average of 77.51, together with EZS-Bench Domain and average scores of 86.98 and 81.87.</p></details>
         </div>
       </div>
     </section>
-    <section class="section response-showcase" id="responses" aria-labelledby="responses-title">
+<section class="overview-film"><div class="wrap"><div class="hero-media" id="overview"><div id="overview-mount"></div></div></div></section>
+<section class="section response-showcase" id="responses" aria-labelledby="responses-title">
       <div class="wrap">
-        <div class="section-head"><div><span class="eyebrow">Make the response visible</span><h2 id="responses-title"><span class="section-accent">Who, where, and how?</span></h2><p id="response-intro-copy">Watch the interaction. Explore the responses behind its motion.</p></div><span class="section-no">INTERACTION RESPONSES</span></div>
+        <div class="section-head"><div><span class="eyebrow">Interaction responses</span><h2 id="responses-title">Who, where, and <span class="section-accent">how?</span></h2><p id="response-intro-copy">Watch the interaction. Explore the responses behind its motion.</p></div></div>
         <div class="response-case-choices" id="response-case-choices" role="group" aria-label="Choose an interaction"></div>
         <div class="response-demo" id="response-panel" role="region" aria-roledescription="carousel" aria-label="Selected interactions">
           <div class="response-demo-head"><div><h3 id="response-case-title" aria-live="polite" aria-atomic="true"></h3><details class="response-instruction" id="response-instruction" hidden><summary>Task instruction</summary><p id="response-prompt"></p></details></div><span class="case-counter" id="response-case-counter"></span></div>
@@ -357,19 +352,10 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
         <div class="response-caption"><p>Video and dynamic responses play in sync.</p><a href="#feedback">Explore attention &amp; interventions ↓</a></div>
       </div>
     </section>
-    <section class="section abstract-band" id="abstract" aria-labelledby="abstract-title">
-      <div class="wrap abstract-layout">
-        <div><span class="eyebrow">The idea</span><h2 id="abstract-title">Model the<br><span class="section-accent">response.</span></h2></div>
-        <div class="abstract-text">
-          <p>Embodied video models need to predict how objects respond to a robot’s actions. These responses are often <strong>local, brief, and critical to the task</strong>: a cloth corner lifts before the rest unfolds, and an indirectly affected object responds differently from the manipulation target.</p>
-          <p><strong>ReactWorld</strong> structures this process into interaction roles, future response strength, and interval motion. A response feedback adapter uses these predictions to update object features relative to a zero-dynamics reference and to guide temporal attention with displacement.</p>
-          <details><summary>Read the project abstract</summary><p>ReactWorld anticipates structured interaction responses from the video generator’s intermediate features within each denoising forward pass. The interaction response field predictor describes participant roles, future motion response strength, motion support, and displacement. The response feedback adapter constructs dynamics-dependent object increments by subtracting a zero-dynamics reference, and turns predicted displacement into a positional bias for temporal attention. Experiments in the current manuscript report a RBench average of 77.51, together with EZS-Bench Domain and average scores of 86.98 and 81.87.</p></details>
-        </div>
-      </div>
-    </section>
+
     <section class="section" id="comparisons" aria-labelledby="comparisons-title">
       <div class="wrap">
-        <div class="section-head"><div><span class="eyebrow">Watch the interaction</span><h2 id="comparisons-title">Same task. <span class="section-accent">Different responses.</span></h2><p>Compare the visible task progress, contact, and object response across methods.</p></div><span class="section-no">02 / RESULTS IN MOTION</span></div>
+        <div class="section-head"><div><span class="eyebrow">Comparisons</span><h2 id="comparisons-title">Same task. <span class="section-accent">Different responses.</span></h2><p>Compare the visible task progress, contact, and object response across methods.</p></div></div>
         <div class="case-tabs" id="case-tabs" role="tablist" aria-label="Comparison task"></div>
         <div class="comparison-shell" id="comparison-panel" role="tabpanel" aria-labelledby="case-tab-stack">
           <div class="case-intro"><h3 id="case-title"></h3><span class="case-counter" id="case-counter"></span></div>
@@ -388,10 +374,10 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
     </section>
     <section class="section" id="method" aria-labelledby="method-title">
       <div class="wrap">
-        <div class="section-head"><div><span class="eyebrow">Inside a denoising step</span><h2 id="method-title"><span class="section-accent">Anticipate.</span> Update. Read.</h2><p>Predicted response fields drive two sequential feedback operations within one DiT forward pass.</p></div><span class="section-no">03 / METHOD</span></div>
+        <div class="section-head"><div><span class="eyebrow">Method</span><h2 id="method-title"><span class="section-accent">Anticipate.</span> Update. Read.</h2><p>Predicted response fields drive two sequential feedback operations within one DiT forward pass.</p></div></div>
         <div class="figure-shell">
           <div id="fig2-mount"></div>
-          <div class="figure-footer"><p><strong>ReactWorld overview.</strong> Within one DiT forward pass, the interaction response field predictor supplies context and dynamics to the response feedback adapter. Role-conditioned feature updates are applied first, followed by displacement-guided temporal attention over the updated features.</p><button class="btn small" data-enlarge="fig2">Enlarge figure ↗</button></div>
+          <div class="figure-footer"><p><strong><span class="rw-name">React<span class="rw-world">World</span></span> overview.</strong> Within one DiT forward pass, the interaction response field predictor supplies context and dynamics to the response feedback adapter. Role-conditioned feature updates are applied first, followed by displacement-guided temporal attention over the updated features.</p><button class="btn small" data-enlarge="fig2">Enlarge figure</button></div>
         </div>
         <div class="step-tabs" role="tablist" aria-label="Method stage">
           <button class="step-button active" role="tab" aria-selected="true" id="step-tab-0" aria-controls="step-detail" data-step="0"><span class="step-index">A / ANTICIPATE</span><strong>Predict the response field</strong><span>Who participates, where responses occur, and how they move.</span></button>
@@ -403,8 +389,8 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
     </section>
     <section class="section response-section" id="feedback" aria-labelledby="feedback-title">
       <div class="wrap">
-        <div class="section-head"><div><span class="eyebrow">Inspect the feedback</span><h2 id="feedback-title">How responses <span class="section-accent">guide generation</span></h2><p>Inspect displacement-guided attention, then change the feedback and observe the generated motion.</p></div><span class="section-no">04 / ATTENTION &amp; INTERVENTION</span></div>
-        <div class="figure-shell response-figure"><div id="fig3-mount"></div><div class="figure-footer"><p><strong>Query-level attention analysis.</strong> Fig.3 compares local attention around a shared query, with and without displacement feedback.</p><button class="btn small" data-enlarge="fig3">Enlarge figure ↗</button></div></div>
+        <div class="section-head"><div><span class="eyebrow">Analysis</span><h2 id="feedback-title">How responses <span class="section-accent">guide generation</span></h2><p>Inspect displacement-guided attention, then change the feedback and observe the generated motion.</p></div></div>
+        <div class="figure-shell response-figure"><div id="fig3-mount"></div><div class="figure-footer"><p><strong>Query-level attention analysis.</strong> Fig.3 compares local attention around a shared query, with and without displacement feedback.</p><button class="btn small" data-enlarge="fig3">Enlarge figure</button></div></div>
         <p class="analysis-note editor-hint">最终 Fig.3 槽位：A（000 / 056 / 076）；56→60 · target_q01_x033_y008；04_LowerFadeLate；01_Whitespace。这里未用旧预览替代最终图。</p>
         <div class="intervention-head"><h3>What happens when displacement feedback changes?</h3><p>Qualitative interventions apply a leftward or rightward offset to the internal displacement condition. The videos show how the generated motion changes with that condition.</p></div>
         <div class="gallery-grid" id="intervention-grid"></div>
@@ -419,10 +405,10 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
     </section>
     <section class="section" id="results" aria-labelledby="results-title">
       <div class="wrap">
-        <div class="section-head"><div><span class="eyebrow">Measure the response</span><h2 id="results-title">From interaction to <span class="section-accent">evidence.</span></h2><p>Benchmark scores and controlled ablations complement the video comparisons.</p></div><span class="section-no">05 / EVALUATION</span></div>
+        <div class="section-head"><div><span class="eyebrow">Evaluation</span><h2 id="results-title">From interaction to <span class="section-accent">evidence.</span></h2><p>Benchmark scores and controlled ablations complement the video comparisons.</p></div></div>
         <div class="results-tabs" role="tablist" aria-label="Evaluation table"><button class="chip active" role="tab" aria-selected="true" id="result-tab-rbench" aria-controls="results-panel" data-result="rbench">RBench</button><button class="chip" role="tab" aria-selected="false" id="result-tab-ezs" aria-controls="results-panel" data-result="ezs">EZS-Bench</button><button class="chip" role="tab" aria-selected="false" id="result-tab-human" aria-controls="results-panel" data-result="human">Human study</button></div>
         <div id="results-panel" role="tabpanel" aria-labelledby="result-tab-rbench"><div class="table-container" id="results-table"></div><p class="table-note" id="results-note"></p></div>
-        <div class="results-bottom"><div class="finding"><h3>Task-aware object responses</h3><p>In the current RBench table, ReactWorld improves all five task-category scores over PhysisForcing. The complete table also reports results for four robot embodiments.</p></div><div class="finding"><h3>Response feedback contributes</h3><p>Adding prediction heads alone is less effective than feeding the predicted responses back into generation. The full model also improves over the variant without displacement bias.</p></div></div>
+        <div class="results-bottom"><div class="finding"><h3>Task-aware object responses</h3><p>In the current RBench table, <span class="rw-name">React<span class="rw-world">World</span></span> improves all five task-category scores over PhysisForcing. The complete table also reports results for four robot embodiments.</p></div><div class="finding"><h3>Response feedback contributes</h3><p>Adding prediction heads alone is less effective than feeding the predicted responses back into generation. The full model also improves over the variant without displacement bias.</p></div></div>
         <details class="analysis-details"><summary>Explore component ablations</summary><div class="detail-content"><p>All variants share the same initialization, training data, and budget. Except for Video-FT, the variants use the same response supervision.</p><div class="table-container" id="ablation-table"></div><p class="table-note">PSS and TAC are RBench interaction-quality metrics. Domain and Quality are EZS-Bench scores. Higher is better for all four.</p></div></details>
       </div>
     </section>
@@ -430,8 +416,8 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
       <div class="wrap citation-grid"><div><span class="eyebrow">Reference</span><h2 id="citation-title"><span class="section-accent">Citation</span></h2></div><div class="citation-block"><p id="citation-pending">The citation and release links will be added with the paper.</p><pre id="citation-text" hidden></pre><button class="btn small" id="copy-citation" hidden>Copy</button></div></div>
     </section>
   </main>
-  <footer class="footer"><div class="wrap footer-inner"><span>ReactWorld · Structuring Interaction Responses</span><a href="#top">Back to top ↑</a></div></footer>
-  <div class="local-tools" id="local-tools"><button class="btn local-label" id="toggle-edit" aria-pressed="false">显示素材位置</button><button class="btn primary" id="open-editor">本地素材</button></div>
+  <footer class="footer"><div class="wrap footer-inner"><span><span class="rw-name">React<span class="rw-world">World</span></span> · Structuring Interaction Responses</span><a href="#top">Back to top</a></div></footer>
+  <div class="local-tools" id="local-tools" hidden><button class="btn local-label" id="toggle-edit" aria-pressed="false">显示素材位置</button><button class="btn primary" id="open-editor">本地素材</button></div>
   <div class="toast" id="toast" role="status" hidden></div>
   <dialog class="modal" id="editor-dialog" aria-labelledby="editor-title">
     <div class="modal-head"><h2 id="editor-title">填入你的本地素材</h2><button class="close" data-close="editor-dialog" aria-label="关闭素材面板">×</button></div>
@@ -461,8 +447,7 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
   <dialog class="modal lightbox" id="figure-dialog" aria-labelledby="figure-dialog-title"><div class="modal-head"><h2 id="figure-dialog-title">Figure</h2><button class="close" data-close="figure-dialog" aria-label="Close figure">×</button></div><div class="modal-body"><img id="enlarged-figure" alt=""></div></dialog>
   <input type="file" id="single-file" class="invisible-input" tabindex="-1" aria-label="选择单个本地素材">
   <input type="file" id="folder-files" class="invisible-input" webkitdirectory multiple tabindex="-1" aria-label="选择本地素材文件夹">
-  <script type="application/json" id="site-config">
-{
+  <script type="application/json" id="site-config">{
   "authors": "Hanwei Liu, Huijia Zhang, Hanzhang Wang, Guangyu Liu, Hanbei Zhan, Linjie Hu, Bin Xiao, Xuan Zhou, Dong Zhang",
   "affiliations": "Huawei Technologies Co., Ltd.; Tongji University; Zhejiang University",
   "venue": "",
@@ -470,7 +455,7 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
   "overviewAudio": "",
   "code": "",
   "data": "",
-  "citation": "",
+  "citation": "@misc{liu2026reactworld,\n  title = {{ReactWorld}: Structuring Interaction Responses for Embodied Video Generation},\n  author = {Hanwei Liu and Huijia Zhang and Hanzhang Wang and Guangyu Liu and Hanbei Zhan and Linjie Hu and Bin Xiao and Xuan Zhou and Dong Zhang},\n  year = {2026},\n  eprint = {2611.06120},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CV},\n  url = {https://arxiv.org/abs/2611.06120}\n}",
   "showLocalTools": false,
   "autoLoadPaths": true,
   "methods": [
@@ -2032,8 +2017,7 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
     "Dong Zhang": "Huawei Technologies Co., Ltd."
   },
   "overviewVolume": 0.55
-}
-</script>
+}</script>
   <script type="application/json" id="embedded-images">{}</script>
   <script>
   (function () {
@@ -2400,7 +2384,10 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
       var initial=SITE.responseCases.findIndex(function(c){return c.id===SITE.defaultResponseCase;});if(initial>=0)activeResponseCase=initial;
       SITE.responseCases.forEach(function(c,index){
         var button=document.createElement("button");button.type="button";
-        button.textContent=c.title.replace(/\bthe /g,"");
+        var shot=document.createElement("img");
+        shot.src=slotByKey.get(c.rgb).poster;shot.alt="";shot.loading="lazy";shot.decoding="async";
+        var caption=document.createElement("span");caption.textContent=c.title;
+        button.append(shot,caption);
         button.setAttribute("aria-label",c.title);button.setAttribute("aria-controls","response-media");
         button.addEventListener("click",function(){selectResponseCase(index);});$("response-case-choices").appendChild(button);
       });
@@ -2513,7 +2500,7 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
       });
       var demo=document.createElement("a");demo.className="btn primary";demo.href="#overview";demo.innerHTML=iconPlay+"Watch overview";$("resource-links").prepend(demo);
       var arxiv=document.createElement("a");arxiv.className="btn";arxiv.href="https://arxiv.org/abs/2611.06120";arxiv.target="_blank";arxiv.rel="noopener noreferrer";arxiv.innerHTML=icons.paper+"arXiv";$("resource-links").querySelector("a.btn:not(.primary)").after(arxiv);
-      var citation=SITE.citation||"";$("citation-text").textContent=citation;$("citation-text").hidden=!citation;$("copy-citation").hidden=!citation;$("citation-pending").hidden=!!citation;
+      var citation=SITE.citation||"";$("citation-text").innerHTML=brandedText(citation);$("citation-text").hidden=!citation;$("copy-citation").hidden=!citation;$("citation-pending").hidden=!!citation;
       $("preview-label").hidden=!SITE.showLocalTools;
       $("local-tools").hidden=!SITE.showLocalTools;
     }
@@ -2528,12 +2515,12 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
     function renderCases() {
       SITE.cases.forEach(function(c,index){var button=document.createElement("button");button.className="chip"+(index===activeCase?" active":"");button.textContent=c.title;button.id="case-tab-"+c.id;button.setAttribute("role","tab");button.setAttribute("aria-selected",String(index===activeCase));button.setAttribute("aria-controls","comparison-panel");button.addEventListener("click",function(){selectComparisonCase(index);});$("case-tabs").appendChild(button);});
     }
+    function brandedText(text) {
+      return escapeHTML(text).replace(/\bReactWorld\b/g, '<span class="rw-name">React<span class="rw-world">World</span></span>');
+    }
     function comparisonMethodLabel(method) {
       var label=document.createElement("p");label.className="method-label";
-      if(method.id==="ours"&&method.label==="ReactWorld"){
-        label.appendChild(document.createTextNode("React"));
-        var world=document.createElement("span");world.className="brand-accent";world.textContent="World";label.appendChild(world);
-      }else label.textContent=method.label;
+      label.innerHTML=brandedText(method.label);
       return label;
     }
     function renderComparison() {
@@ -2622,9 +2609,9 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
     function renderStep(index){document.querySelectorAll("[data-step]").forEach(function(b,i){b.classList.toggle("active",i===index);b.setAttribute("aria-selected",String(i===index));});$("step-title").textContent=steps[index].title;$("step-copy").textContent=steps[index].copy;$("step-formula").innerHTML=steps[index].formula;$("step-detail").setAttribute("aria-labelledby","step-tab-"+index);}
     function makeTable(table) {
       var html='<table><caption>'+escapeHTML(table.caption)+'</caption><thead><tr>'+table.head.map(function(h){return '<th scope="col">'+escapeHTML(h)+'</th>';}).join("")+'</tr></thead><tbody>';
-      table.rows.forEach(function(row){html+='<tr'+(row[0]==="ReactWorld"||row[0]==="Full (ReactWorld)"?' class="ours-row"':"")+'>';row.forEach(function(value,i){var best=false;if(i>0&&typeof value==="number"){var vals=table.rows.map(function(r){return typeof r[i]==="number"?r[i]:-Infinity;});best=value===Math.max(...vals);}html+='<'+(i===0?'th scope="row"':'td')+(best?' class="best"':"")+'>'+(typeof value==="number"?value.toFixed(2):escapeHTML(value))+'</'+(i===0?"th":"td")+'>';});html+='</tr>';});return html+'</tbody></table>';
+      table.rows.forEach(function(row){html+='<tr'+(row[0]==="ReactWorld"||row[0]==="Full (ReactWorld)"?' class="ours-row"':"")+'>';row.forEach(function(value,i){var best=false;if(i>0&&typeof value==="number"){var vals=table.rows.map(function(r){return typeof r[i]==="number"?r[i]:-Infinity;});best=value===Math.max(...vals);}html+='<'+(i===0?'th scope="row"':'td')+(best?' class="best"':"")+'>'+(typeof value==="number"?value.toFixed(2):brandedText(value))+'</'+(i===0?"th":"td")+'>';});html+='</tr>';});return html+'</tbody></table>';
     }
-    function renderResults(key){document.querySelectorAll("[data-result]").forEach(function(b){b.classList.toggle("active",b.dataset.result===key);b.setAttribute("aria-selected",String(b.dataset.result===key));});$("results-table").innerHTML=makeTable(SITE.tables[key]);$("results-note").textContent=SITE.tables[key].note;$("results-panel").setAttribute("aria-labelledby","result-tab-"+key);}
+    function renderResults(key){document.querySelectorAll("[data-result]").forEach(function(b){b.classList.toggle("active",b.dataset.result===key);b.setAttribute("aria-selected",String(b.dataset.result===key));});$("results-table").innerHTML=makeTable(SITE.tables[key]);$("results-note").innerHTML=brandedText(SITE.tables[key].note);$("results-panel").setAttribute("aria-labelledby","result-tab-"+key);}
     function updateMediaStatus() {
       if(!$("media-status"))return;
       var loaded=SITE.slots.filter(function(s){return readyKeys.has(s.key)||localFiles.has(s.key);}).length;
@@ -2713,43 +2700,7 @@ video.overview-external-audio::-webkit-media-controls-mute-button,video.overview
     document.addEventListener("DOMContentLoaded",init);
   })();
   </script>
-<script id="reactworld-hero-motion">
-  /* Decorative background is independent from every synchronized result player. */
-  (function(){
-    var root=document.getElementById('top'),backdrop=document.getElementById('hero-ambience'),button=document.getElementById('hero-motion-toggle');
-    if(!root||!backdrop||!button)return;
-    var videos=Array.from(backdrop.querySelectorAll('video')),reduced=window.matchMedia('(prefers-reduced-motion: reduce)'),compact=window.matchMedia('(max-width: 680px)');
-    var paused=false,visible=true,backgroundReady=document.readyState==="complete";
-    function allowed(){return !reduced.matches&&!compact.matches&&!(navigator.connection&&navigator.connection.saveData);}
-    function text(){button.textContent=paused?'▷ Play background':'Ⅱ Pause background';button.setAttribute('aria-pressed',String(paused));}
-    function sync(){
-      var run=backgroundReady&&allowed()&&visible&&!document.hidden&&!paused;
-      button.hidden=!allowed()||videos.every(function(video){return !!video.error;});text();
-      videos.forEach(function(video){
-        if(run){
-          if(!video.getAttribute('src'))video.src=video.dataset.backgroundSrc;
-          var play=video.play();if(play&&play.catch)play.catch(function(){video.parentElement.classList.remove('is-playing');});
-        }else video.pause();
-      });
-    }
-    videos.forEach(function(video){
-      video.muted=true;video.defaultMuted=true;video.playbackRate=.65;
-      video.addEventListener('playing',function(){video.parentElement.classList.add('is-playing');});
-      video.addEventListener('error',function(){video.parentElement.classList.remove('is-playing');if(videos.every(function(v){return v.error;}))button.hidden=true;});
-    });
-    button.addEventListener('click',function(){paused=!paused;sync();});
-    document.addEventListener('visibilitychange',sync);
-    [reduced,compact].forEach(function(query){if(query.addEventListener)query.addEventListener('change',sync);else if(query.addListener)query.addListener(sync);});
-    if('IntersectionObserver' in window)new IntersectionObserver(function(entries){visible=entries[0].isIntersecting;sync();},{threshold:0}).observe(backdrop);
-    function startBackground(){
-      function ready(){backgroundReady=true;sync();}
-      if(window.requestIdleCallback)window.requestIdleCallback(ready,{timeout:1500});else ready();
-    }
-    if(backgroundReady)startBackground();else window.addEventListener('load',startBackground,{once:true});
-    sync();
-  })();
-
-</script>
+<script src="wall.js?v=film-hero" defer></script>
 <script id="reactworld-section-navigation">
 (function(){
   var links=Array.from(document.querySelectorAll('.nav-links a')),home=document.querySelector('.wordmark'),sections=links.map(function(link){return document.querySelector(link.getAttribute('href'));}),queued=false;
